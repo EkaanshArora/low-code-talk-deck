@@ -79,7 +79,7 @@ clicks: 8
 </div>
 </div>
 <div v-click=2 style="display:none"></div>
-<v-clicks styl>
+<v-clicks>
 
 - #### > Assembly
 - #### > High-level languages / Compilers
@@ -295,11 +295,11 @@ event.emit("some-event-between-e-and-f") // can be blocking / non-blocking
 > step f
 ```
 <div v-click=1 >
-  <div v-if="$slidev.nav.clicks===1" v-motion
+  <div v-if="$slidev.nav.clicks>0" v-motion
     :initial="{ x: 0, y: 40, opacity: 0}"
     :enter="{ x:0, y: 20, opacity: 1, transition: { delay: 0 } }">
 
-```ts
+```ts {1|2|3|4}
 > step abcd
 doSomethingAfterEventD()
 instance.on("some-event-between-e-and-f", doSomethingAfterEventE())
@@ -319,7 +319,7 @@ image?.padding(100).resizable().scaledToFit()
 ```
 
 React Library
-```tsx
+```tsx{0|1|3}
 <image padding="100" resizable scaled></image>
 // vs.
 <image style={{padding: "100px"}} resizable scaled></image>
@@ -388,12 +388,13 @@ allViews.remove(cancelButton) ✅
 ## Docs, docs, docs
 <v-clicks>
 
-- \*look at code\*
+- \*looks at code\*
 - i wonder who wrote this trash
 - `git blame`
-- EkaanshArora
+- EkaanshArora, 2 weeks ago
 
-We has met the enemy, and it is us. — Walt Kelly
+#### We has met the enemy, and it is us. — Walt Kelly
+
 
 <img src=images/manual.png style="width: 70%;margin: auto">
 </v-clicks>
@@ -401,11 +402,46 @@ We has met the enemy, and it is us. — Walt Kelly
 
 ---
 
-## Handle user errors
+## Handle errors
+
+<tweet v-if="$slidev.nav.clicks===0" id="1535987671868137472" scale="0.7" />
+<v-clicks>
+
+- #### > Descriptive error messages
+- #### > Handle user errors
+- #### > Use patterns to show functions that can error
+
+</v-clicks>
+
+<div v-click="4" v-if="$slidev.nav.clicks>3 && $slidev.nav.clicks<6" >
+
+```ts {1-5|7}
+try {
+  data = methodThatCanError(badConfig)
+} catch (e) {
+  print(e)
+}
+...
+let data = methodThatCanError(badConfig)
+```
+</div>
+<div v-click="6">
+
+```ts
+let {data, error} = methodThatCanError(badConfig)
+if (!error) print(data)
+```
+</div>
 
 ---
 
-## Pre built UI should fit in the platform standards & user behvaiour
+<h2 style="display:inline"> Pre built UI </h2>
+<h4 v-click="1" style="display:inline"> - respect platform standards</h4>
+
+<br>
+<br>
+
+<img src="images/ios.png" style="width: 50%;margin:auto">
 
 ---
 
