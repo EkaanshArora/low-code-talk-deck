@@ -61,7 +61,7 @@ layout: two-cols
 </div>
 
 ---
-clicks: 8
+clicks: 11
 ---
 
 <div v-if="$slidev.nav.currentPage===3" v-motion
@@ -79,25 +79,78 @@ clicks: 8
 </div>
 </div>
 <div v-click=2 style="display:none"></div>
-<v-clicks>
 
-- #### > Assembly
-- #### > High-level languages / Compilers
-- #### > Frameworks
-- #### > Low code?
+<div v-if="$slidev.nav.clicks>2 && $slidev.nav.clicks<8" style="position:relative; height: 35vh;display: flex;justify-content: center;">
+<div style="position:absolute; bottom:0;">
 
-</v-clicks>
+<div v-if="$slidev.nav.clicks===3">
 
-<br>
+```mermaid {scale: 0.8}
 
-<div style="display: flex; flex-direction: row; flex: 1; justify-content: space-around; align-items: center" v-click=7>
+flowchart BT
+CPU
+
+```
+</div>
+<div v-if="$slidev.nav.clicks===4">
+
+```mermaid {scale: 0.8}
+
+flowchart BT
+CPU --> Assembly 
+
+```
+</div>
+<div v-if="$slidev.nav.clicks===5">
+
+```mermaid {scale: 0.8}
+
+flowchart BT
+CPU --> Assembly --> id1(High Level Languages)
+
+```
+</div>
+<div v-if="$slidev.nav.clicks===6">
+
+```mermaid {scale: 0.8}
+
+flowchart BT
+CPU --> Assembly --> id1(High Level Languages) --> Frameworks
+
+```
+</div>
+<div v-if="$slidev.nav.clicks===7">
+
+```mermaid {scale: 0.8}
+
+flowchart BT
+CPU --> Assembly --> id1(High Level Languages) --> Frameworks --> id2(Low Code)
+
+```
+</div>
+</div>
+</div>
+
+<div v-if="$slidev.nav.clicks===8">
+
+## Videocall = 1000s of lines of code
+</div>
+<div v-if="$slidev.nav.clicks===9">
+
+```tsx
+<AgoraUIKit config={config} style={style} callbacks={callbacks} />
+```
+</div>
+
+
+<div style="display: flex; flex-direction: row; flex: 1; justify-content: space-around; align-items: center" v-click=10>
   <img src="images/logo1.svg" style="width: 20%; height: 100%"/>
   <img src="images/logo2.png" style="width: 20%; height: 100%"/>
   <img src="images/logo3.png" style="width: 20%; height: 100%"/>
   <img src="images/logo4.svg" style="width: 20%; height: 100%"/>
 </div>
 
-<img v-if="$slidev.nav.clicks>7" v-motion
+<img v-if="$slidev.nav.clicks>10" v-motion
   :initial="{ x: 0, y: 0, opacity: 0}"
   :enter="{ x:0, y: -15, opacity: 1}" src="images/logo-wp.png" style="width: 30%; height: 100%; margin: auto"/>
 
@@ -147,10 +200,9 @@ WordPress is used by **43.2%** of all websites on the internet in **2022**, an i
 
 <v-clicks>
 
-- ### > Thinking developer experience
-- ### > Low-Code specific patterns
-- ### > General API design patterns
-- ### > Escape hatches
+- ### > Thinking Developer Experience
+- ### > Low Code first design 
+- ### > API patterns
 
 </v-clicks>
 
@@ -407,7 +459,7 @@ allViews.remove(cancelButton) ✅
 <tweet v-if="$slidev.nav.clicks===0" id="1535987671868137472" scale="0.7" />
 <v-clicks>
 
-- #### > Descriptive error messages
+- #### > Descriptive error messages, error codes, error description ELI5
 - #### > Handle user errors
 - #### > Use patterns to show functions that can error
 
@@ -444,22 +496,80 @@ if (!error) print(data)
 <img src="images/ios.png" style="width: 50%;margin:auto">
 
 ---
+clicks: 6
+---
 
+## Use syntax to avoid user error
+
+<div v-if="$slidev.nav.clicks<3">
+
+#### enums
+
+```cpp {1-2|4|4-8}
+string today = "wednesday";
+strcmp(today, "Wednesday"); //false
+...
+enum week { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday };
+int main()
+{
+  week today = Wednesday; //prints 4
+}
+```
+</div>
+
+
+<div v-if="$slidev.nav.clicks>2">
+
+#### getter
+
+```ts {0|0|0|1-3|5-6|7-13|8,15-16}
+const object = {}
+object.time = new Date().getTime()
+return object; 
+
+let myTime = object.time
+object.time = 0 //overwritten :(
+
+...
+
+const object = {}
+const time = new Date().getTime()
+object.getTime = () => time
+return object;
+
+let myTime = object.getTime()
+object.getTime = 0 // doesn't make sense anymore + type error
+```
+</div>
+
+---
+
+## Try to keep your dependencies lean
 ## i18n use icons
-
 👋 username,
 
----
-
-## Use syntax / design the API to avoid user error
-
----
-
-## Mobile Design
-
+## Shipping UI - design for mobile
 ---
 
 <tweet id=1534914416050855936 /> 
+---
+
+<div style="display:flex;flex-direction: column; align-items: center">
+<br>
+<br>
+<br>
+
+# Thanks for your time!
+<br>
+
+#### Make cool things to inspire cooler things
+<br>
+
+<logos-twitter /> <a href="https://twitter.com/ekaansh" target=_blank>@ekaansh</a>
+
+</div>
+
+---
 
 <!-- 
 ## Framework specific design
