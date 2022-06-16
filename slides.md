@@ -212,7 +212,7 @@ WordPress is used by **43.2%** of all websites on the internet in **2022**, an i
     :enter="{ x:0, y: 0, opacity: 1, }">
 
 
-# Extensibility is **#0**
+# Extensibility is **#1**
 
 <tweet id="1123554129882705923" style="width: 50%"/>
 </div>
