@@ -80,7 +80,7 @@ clicks: 11
 </div>
 <div v-click=2 style="display:none"></div>
 
-<div v-if="$slidev.nav.clicks>2 && $slidev.nav.clicks<8" style="position:relative; height: 35vh;display: flex;justify-content: center;">
+<div v-if="$slidev.nav.clicks>2 && $slidev.nav.clicks<8" style="position:relative; height: 32vh;display: flex;justify-content: center;">
 <div style="position:absolute; bottom:0;">
 
 <div v-if="$slidev.nav.clicks===3">
@@ -131,7 +131,7 @@ CPU --> Assembly --> id1(High Level Languages) --> Frameworks --> id2(Low Code)
 </div>
 </div>
 
-<div v-if="$slidev.nav.clicks===8">
+<div v-if="$slidev.nav.clicks===8 || $slidev.nav.clicks===9">
 
 ## Videocall = 1000s of lines of code
 </div>
@@ -142,8 +142,7 @@ CPU --> Assembly --> id1(High Level Languages) --> Frameworks --> id2(Low Code)
 ```
 </div>
 
-
-<div style="display: flex; flex-direction: row; flex: 1; justify-content: space-around; align-items: center" v-click=10>
+<div style="display: flex; flex-direction: row; flex: 1; justify-content: space-around; align-items: center; margin-top: 100px" v-click=10>
   <img src="images/logo1.svg" style="width: 20%; height: 100%"/>
   <img src="images/logo2.png" style="width: 20%; height: 100%"/>
   <img src="images/logo3.png" style="width: 20%; height: 100%"/>
@@ -152,7 +151,7 @@ CPU --> Assembly --> id1(High Level Languages) --> Frameworks --> id2(Low Code)
 
 <img v-if="$slidev.nav.clicks>10" v-motion
   :initial="{ x: 0, y: 0, opacity: 0}"
-  :enter="{ x:0, y: -15, opacity: 1}" src="images/logo-wp.png" style="width: 30%; height: 100%; margin: auto"/>
+  :enter="{ x:0, y: -200, opacity: 1}" src="images/logo-wp.png" style="width: 30%; height: 100%; margin: auto"/>
 
 <!--  low code is umbrella term for everything from drag drop interfaces to frameworks that you need to write code -->
 ---
@@ -303,11 +302,12 @@ Access low-level code
 <!-- we're trying to do the users work for them, but you don't want to make decision on the user's behalf, so you add smart defaults that work out of the box but can be overridden simply-->
 
 ---
-clicks: 1
+clicks: 2
 ---
+
 ## Granularity
 
-<div v-click-hide=1>
+<div v-if="$slidev.nav.clicks === 0">
 
 ```ts
 > step a 
@@ -324,29 +324,33 @@ vs.
 > step abcdef
 ```
 </div>
-<div v-click=1 >
-  <div v-if="$slidev.nav.clicks>0" v-motion
-    :initial="{ x: 0, y: -150, opacity: 0}"
-    :enter="{ x:0, y: -200, opacity: 1, }">
+<div v-click="1">
 
 ```ts
 > step abcd
 > step ef
 ```
+</div>
 
-  </div>
+<div v-click="2">
+  <img style="margin: 20px auto" src="https://i.giphy.com/media/Ry1MOAeAYXvRVQLPw3/giphy.webp">
 </div>
 
 ---
 
 ## Give user access to events
 
+What if - I want to do something between step **E** and **F**?
+
+<div v-click=1 >
+
 ```ts
 > step e
 event.emit("some-event-between-e-and-f") // can be blocking / non-blocking
 > step f
 ```
-<div v-click=1 >
+</div>
+<div v-click=2 >
   <div v-if="$slidev.nav.clicks>0" v-motion
     :initial="{ x: 0, y: 40, opacity: 0}"
     :enter="{ x:0, y: 20, opacity: 1, transition: { delay: 0 } }">
@@ -359,6 +363,26 @@ instance.on("some-event-between-e-and-f", doSomethingAfterEventE())
 ```
 
   </div>
+</div>
+
+---
+
+## Give user access to events
+#### Giving data back to the user
+
+<div v-click=1>
+
+#### Side Effects
+</div>
+<div v-click=2>
+
+```js
+const ele = document.querySelector('agora-react-web-uikit');
+
+ele.addEventListener('AgoraUIKitEndcall', (e) => {
+  ele.remove()
+ })
+```
 </div>
 
 ---
@@ -415,6 +439,11 @@ clicks: 5
 <tweet v-if="$slidev.nav.clicks===0" id="1522312354653945857" />
 
 <div v-click=1>
+
+`dangerouslySetInnerHTML`
+</div>
+
+<div v-click=2>
 
 ```swift {0|1-2|4-5|7-8|10-11|13-14}
 x.append(y) //Nonmutating
@@ -486,26 +515,17 @@ if (!error) print(data)
 </div>
 
 ---
-
-<h2 style="display:inline"> Pre built UI </h2>
-<h4 v-click="1" style="display:inline"> - respect platform standards</h4>
-
-<br>
-<br>
-
-<img src="images/ios.png" style="width: 50%;margin:auto">
-
----
-clicks: 6
+clicks: 7
 ---
 
 ## Use syntax to avoid user error
 
-<div v-if="$slidev.nav.clicks<3">
+<div v-click-hide=3>
+<div v-click=0>
 
 #### enums
 
-```cpp {1-2|4|4-8}
+```cpp {1,2|4|4-8}
 string today = "wednesday";
 strcmp(today, "Wednesday"); //false
 ...
@@ -516,13 +536,14 @@ int main()
 }
 ```
 </div>
+</div>
 
 
-<div v-if="$slidev.nav.clicks>2">
+<div v-click=3 style="margin: -240px 0">
 
 #### getter
 
-```ts {0|0|0|1-3|5-6|7-13|8,15-16}
+```ts {1-3|5-6|7-13|8,15-16}
 const object = {}
 object.time = new Date().getTime()
 return object; 
@@ -543,15 +564,28 @@ object.getTime = 0 // doesn't make sense anymore + type error
 </div>
 
 ---
+clicks: 3
+---
+# Bonus
 
-## Try to keep your dependencies lean
-## i18n use icons
-👋 username,
+<h4 style="display:inline"> Pre built UI <span style="display:inline"> - respect platform standards</span></h4>
+<div v-if="$slidev.nav.clicks===1">
+<br>
+<img  src="images/ios.png" style="width: 50%;margin:auto">
+<h4 style="text-align: center">  Design for all platforms: web, desktop & mobile </h4>
+</div>
+<div v-click=2>
 
-## Shipping UI - design for mobile
+#### Keep your dependencies lean
+</div>
+<div v-click=3>
+<h4 style="display:inline"> i18n? use icons: <span style="dispaly: inline">👋 username </span></h4>
+</div>
+
 ---
 
 <tweet id=1534914416050855936 /> 
+
 ---
 
 <div style="display:flex;flex-direction: column; align-items: center">
@@ -563,6 +597,7 @@ object.getTime = 0 // doesn't make sense anymore + type error
 <br>
 
 #### Make cool things to inspire cooler things
+<!-- #### Learn stupid things to build stupidder things -->
 <br>
 
 <logos-twitter /> <a href="https://twitter.com/ekaansh" target=_blank>@ekaansh</a>
@@ -570,6 +605,16 @@ object.getTime = 0 // doesn't make sense anymore + type error
 </div>
 
 ---
+
+# Refereces
+
+- [Agora Web UIKit](https://github.com/AgoraIO-Community/Web-React-UIKit/)
+- [Gartner Report](https://cyclr.com/blog/low-code-is-revolutionising-the-software-industry#:~:text=With%20Gartner%20suggesting%20that%20%E2%80%9Cby,such%20as%20citizen%20developers%2Fintegrators.)
+- [Swyx Twitter](https://twitter.com/swyx)
+- [cdk8s](https://cdk8s.io/)
+- [Swift Docs](https://swift.org/documentation/api-design-guidelines/)
+- [xkcd comic](https://xkcd.com/)
+- [Giphy gif](https://giphy.com/)
 
 <!-- 
 ## Framework specific design
@@ -585,5 +630,3 @@ func main() {
 ```ts
 console.log('hi mom')
 ```-->
-
----
