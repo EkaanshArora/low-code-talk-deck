@@ -207,6 +207,7 @@ WordPress is used by **43.2%** of all websites on the internet in **2022**, an i
 
 ---
 
+
 <div v-if="$slidev.nav.currentPage===6" v-motion
     :initial="{ x: 0, y: 10, opacity: 0}"
     :enter="{ x:0, y: 0, opacity: 1, }">
@@ -214,58 +215,138 @@ WordPress is used by **43.2%** of all websites on the internet in **2022**, an i
 
 # Extensibility is **#1**
 
-<tweet id="1123554129882705923" style="width: 50%"/>
+<tweet id="1123554129882705923" />
 </div>
 
 <!-- all good low code tools let you write code, this avoids you hitting a road block, oh can't do this with low code. must throw away everything and then start fresh, that's the worst experience. this is what has been key for wordpress  -->
+
 ---
-clicks: 6
+clicks: 4
 ---
 <div v-if="$slidev.nav.currentPage===7" v-motion
     :initial="{ x: 0, y: 10, opacity: 0}"
-    :enter="{ x:0, y: 0, opacity: 1, }">
+    :enter="{ x:0, y: 0, opacity: 1, }" style="margin-top: -40px">
 
 # Access low-level code
+<!-- <br> -->
+<!-- <br> -->
+
+<div v-if="$slidev.nav.clicks === 0">
+
+<img src="/images/3.png" style="width: 600px; height: 250px" />
+
+</div> 
 </div>
-<br>
-<br>
+<div v-if="$slidev.nav.clicks === 1" style="display: flex; flex-direction: row; overflow: hidden">
+<div style="width: 50%">
 
-<div v-if="$slidev.nav.clicks > 0 && $slidev.nav.clicks < 4">
+```ts
+var canvas = document.getElementById('my_Canvas');
+gl = canvas.getContext('experimental-webgl');
+var vertices = 
+[-0.5, 0.5, 0.0, -0.5, -0.5, 0.0, 0.5, -0.5, 0.0, 0.5, 0.5, 0.0];
+indices = [3, 2, 1, 3, 1, 0];
+var vertex_buffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer);
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+gl.bindBuffer(gl.ARRAY_BUFFER, null);
+var Index_Buffer = gl.createBuffer();
+gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, Index_Buffer);
+gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, 
+new Uint16Array(indices), gl.STATIC_DRAW);
+gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
+var vertCode = 'attribute vec3 coordinates;' +
+  'void main(void) {' + ' gl_Position = vec4(coordinates, 1.0);' + '}';
+var vertShader = gl.createShader(gl.VERTEX_SHADER);
+gl.shaderSource(vertShader, vertCode);
+gl.compileShader(vertShader);
+```
+</div>
+<div>
 
-```ts {1-2|6-7|all}
-const lowCodeInstance = new LowCode(config);
-lowCodeInstance.doSomethingEasy();
+```ts
+var fragCode =
+  'void main(void) {' + ' gl_FragColor = vec4(0.0, 1.0, 0.0, 1);' + '}';
+var fragShader = gl.createShader(gl.FRAGMENT_SHADER);
+gl.shaderSource(fragShader, fragCode);
+gl.compileShader(fragShader);
+var shaderProgram = gl.createProgram();
+gl.attachShader(shaderProgram, vertShader);
+gl.attachShader(shaderProgram, fragShader);
+gl.linkProgram(shaderProgram);
+gl.useProgram(shaderProgram);
+gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer);
+gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, Index_Buffer);
+var coord = gl.getAttribLocation(shaderProgram, 'coordinates');
+gl.vertexAttribPointer(coord, 3, gl.FLOAT, false, 0, 0);
+gl.enableVertexAttribArray(coord);
+gl.clearColor(0, 0, 0, 1);
+gl.enable(gl.DEPTH_TEST);
+gl.clear(gl.COLOR_BUFFER_BIT);
+gl.viewport(0, 0, canvas.width, canvas.height);
+gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);
+```
 
-...
+</div>
+</div>
 
-const sdkInstance = lowCodeInstance.getSDK();
-sdkInstance.doSomethingLowCodeDoesNot();
+<div v-if="$slidev.nav.clicks === 2">
+
+```ts {all}
+import * as THREE from 'three';
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({canvas: document.getElementById('three'));
+const geometry = new THREE.BoxGeometry(3, 3.5);
+const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+camera.position.z = 5;
+renderer.render(scene, camera);
 ```
 
 </div>
 
-<div v-click=4 >
-<div v-if="$slidev.nav.clicks > 3" v-motion
-    :initial="{ x: 0, y: -10, opacity: 0}"
-    :enter="{ x:0, y:  0, opacity: 1, }">
+<div v-if="$slidev.nav.clicks === 3">
 
-```swift {0|0|0|1-4|6-7|all}
-let sepiaFilter = CIFilter(name:"CISepiaTone")
-sepiaFilter?.setValue(input, forKey: kCIInputImageKey)
-sepiaFilter?.setValue(intensity, forKey: kCIInputIntensityKey)
-return sepiaFilter?.outputImage
-...
-let rawdata = UnsafeMutablePointer<RGBAPixel>.allocate(capacity: width * height)
-pixels = UnsafeMutableBufferPointer<RGBAPixel>(start: rawdata, count: width * height)
+```ts {all}
+const material = new THREE.ShaderMaterial({
+    uniforms: uniforms,
+    vertexShader: ` your shader code goes here `,
+    fragmentShader: ` your shader code goes here `
+});
 ```
 </div>
+
+<div v-if="$slidev.nav.clicks === 4">
+
+```ts {all}
+const material = new THREE.ShaderMaterial({
+    uniforms: uniforms,
+    vertexShader:
+       `uniform float time;
+        uniform vec2 resolution;
+        void main()	{
+            gl_Position = vec4( position, 1.0 );
+        }`,
+    fragmentShader:
+       `uniform float time;
+        uniform vec2 resolution;
+        void main()	{
+            float x = mod(time + gl_FragCoord.x, 20.) < 10. ? 1. : 0.;
+            float y = mod(time + gl_FragCoord.y, 20.) < 10. ? 1. : 0.;
+            gl_FragColor = vec4(vec3(min(x, y)), 1.);
+        }`
+});
+```
+
 </div>
 
 ---
 
 <div v-if="$slidev.nav.currentPage===8" v-motion
     :initial="{ x: 0, y: 10, opacity: 0}"
-    :enter="{ x:0, y: 0, opacity: 1, }">
+    :enter="{ x:0, y: 0, opacity: 1, }" style="margin-top: -10px">
 
 Access low-level code
 
@@ -286,7 +367,6 @@ Access low-level code
 
 <!-- if the user needs virtual background that the uikit doesn't support we throw out the entire project unless.. -->
 
----
 ---
 
 <h2 style="display:inline"> Smart defaults </h2>

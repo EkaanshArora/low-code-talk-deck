@@ -1,0 +1,3 @@
+- react & js patterns
+- react internals ?? unsafeaccess
+  -
