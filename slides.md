@@ -1,30 +1,17 @@
 ---
-# try also 'default' to start simple
 theme: geist
 colorSchema: 'dark'
-# background: https://source.unsplash.com/collection/94734566/1920x1080
-# apply any windi css classes to the current slide
-# class: 'text-center'
-# https://sli.dev/custom/highlighters.html
 highlighter: shiki
-# show line numbers in code blocks
 lineNumbers: false
-# some information about the slides, markdown enabled
-# info: |
-#   ## Slidev Starter Template
-#   Presentation slides for developers.
-
-#   Learn more at [Sli.dev](https://sli.dev)
-# persist drawings in exports and build
 drawings:
   persist: false
 ---
 
-# Low-Code for Developers
+# Low-Code for React Developers
 
 <br>
 
-#### Building a low-code product that devs don't throw out in a week
+<!-- #### Building a low-code product that devs don't throw out in a week -->
 <br><br><br><br><br>
 <a href="https://twitter.com/ekaansh" target=_blank>@ekaansh</a>
 
@@ -37,10 +24,10 @@ layout: two-cols
 # About me
 
 <br>
-<img src="images/me.jpeg" style="width: 45%;border-radius: 50%;"/>
+<img src="/images/me.jpeg" style="width: 45%;border-radius: 50%;"/>
 
 ### Ekaansh Arora
-<img src="images/agora-logo.svg" style="width: 15%;"/>
+<img src="/images/agora-logo.svg" style="width: 15%;"/>
 </div>
 
 ::right::
@@ -65,23 +52,23 @@ clicks: 11
 ---
 
 <div v-if="$slidev.nav.currentPage===3" v-motion
-    :initial="{ x: 0, y: 10, opacity: 0}"
-    :enter="{ x:0, y: 0, opacity: 1, }">
+    :initial="{ x: 0, y: -20, opacity: 0}"
+    :enter="{ x:0, y: -50, opacity: 1, }">
 
 # What's low code
 </div>
 
 <div v-click=1 >
   <div v-if="$slidev.nav.clicks>0" v-motion
-    :initial="{ x: 0, y: 0, opacity: 0}"
-    :enter="{ x:0, y: -15, opacity: 1}">
+    :initial="{ x: 0, y: -20, opacity: 0}"
+    :enter="{ x:0, y: -50, opacity: 1}">
     <h4 v-click="1"> Abstractions to simplify developer experience that let you focus on things that matter<h4 v-click="2" style="display:inline">++</h4></h4>
 </div>
 </div>
 <div v-click=2 style="display:none"></div>
 
 <div v-if="$slidev.nav.clicks>2 && $slidev.nav.clicks<8" style="position:relative; height: 32vh;display: flex;justify-content: center;">
-<div style="position:absolute; bottom:0;">
+<div style="position:absolute; bottom: -30px;">
 
 <div v-if="$slidev.nav.clicks===3">
 
@@ -115,7 +102,7 @@ CPU --> Assembly --> id1(High Level Languages)
 ```mermaid {scale: 0.8}
 
 flowchart BT
-CPU --> Assembly --> id1(High Level Languages) --> Frameworks
+CPU --> Assembly --> id1(High Level Languages) --> Libraries
 
 ```
 </div>
@@ -124,7 +111,7 @@ CPU --> Assembly --> id1(High Level Languages) --> Frameworks
 ```mermaid {scale: 0.8}
 
 flowchart BT
-CPU --> Assembly --> id1(High Level Languages) --> Frameworks --> id2(Low Code)
+CPU --> Assembly --> id1(High Level Languages) --> Libraries -.-> id2(Low Code) & id3(No Code)
 
 ```
 </div>
@@ -143,15 +130,15 @@ CPU --> Assembly --> id1(High Level Languages) --> Frameworks --> id2(Low Code)
 </div>
 
 <div style="display: flex; flex-direction: row; flex: 1; justify-content: space-around; align-items: center; margin-top: 100px" v-click=10>
-  <img src="images/logo1.svg" style="width: 20%; height: 100%"/>
-  <img src="images/logo2.png" style="width: 20%; height: 100%"/>
-  <img src="images/logo3.png" style="width: 20%; height: 100%"/>
-  <img src="images/logo4.svg" style="width: 20%; height: 100%"/>
+  <img src="/images/logo1.svg" style="width: 20%; height: 100%"/>
+  <img src="/images/logoshop.png" style="width: 20%; height: 100%"/>
+  <img src="/images/air.png" style="width: 20%; height: 100%"/>
+  <img src="/images/logo2.png" style="width: 20%; height: 100%"/>
 </div>
 
 <img v-if="$slidev.nav.clicks>10" v-motion
   :initial="{ x: 0, y: 0, opacity: 0}"
-  :enter="{ x:0, y: -200, opacity: 1}" src="images/logo-wp.png" style="width: 30%; height: 100%; margin: auto"/>
+  :enter="{ x:0, y: -200, opacity: 1}" src="/images/logo-wp.png" style="width: 30%; height: 100%; margin: auto"/>
 
 <!--  low code is umbrella term for everything from drag drop interfaces to frameworks that you need to write code -->
 ---
@@ -192,26 +179,38 @@ WordPress is used by **43.2%** of all websites on the internet in **2022**, an i
 </div>
 
 ---
-
-# What this talk is about
-
-<br>
-
-<v-clicks>
-
-- ### > Thinking Developer Experience
-- ### > Low Code first design 
-- ### > API patterns
-
-</v-clicks>
-
+clicks: 1
 ---
 
+<img src="/images/google.png" style="width: 60%; margin: auto" />
+<br />
+<div v-if="$slidev.nav.clicks===0" style="width: 60%; margin: auto" v-motion
+    :initial="{ x: 0, y: -130, opacity: 1}"
+    :enter="{ x:0, y: -130, opacity: 1, }">
+
+```js
+lowCodeTool.doSomeMagic()
+```
+
+</div>
+
+<div v-click=1 style="width: 60%; margin: auto" v-motion
+    :initial="{ x: 0, y: -130, opacity: 0}"
+    :enter="{ x:0, y: 0, opacity: 1, }">
+
+```js
+lowCodeTool.doSomeMagic()
+// do some other magic???
+```
+
+</div>
+
+
+---
 
 <div v-if="$slidev.nav.currentPage===6" v-motion
     :initial="{ x: 0, y: 10, opacity: 0}"
     :enter="{ x:0, y: 0, opacity: 1, }">
-
 
 # Extensibility is **#1**
 
@@ -221,194 +220,324 @@ WordPress is used by **43.2%** of all websites on the internet in **2022**, an i
 <!-- all good low code tools let you write code, this avoids you hitting a road block, oh can't do this with low code. must throw away everything and then start fresh, that's the worst experience. this is what has been key for wordpress  -->
 
 ---
-clicks: 4
----
+
 <div v-if="$slidev.nav.currentPage===7" v-motion
     :initial="{ x: 0, y: 10, opacity: 0}"
-    :enter="{ x:0, y: 0, opacity: 1, }" style="margin-top: -40px">
+    :enter="{ x:0, y: -30, opacity: 1, }">
 
-# Access low-level code
-<!-- <br> -->
-<!-- <br> -->
+#### Extensibility
 
-<div v-if="$slidev.nav.clicks === 0">
-
-<img src="/images/3.png" style="width: 600px; height: 250px" />
-
-</div> 
+<div v-if="$slidev.nav.clicks===0">
+<img src="/images/chat0.png" style="width: 40%;margin: auto" />
+<img src="/images/chat.png" style="width: 40%;margin: auto" />
 </div>
-<div v-if="$slidev.nav.clicks === 1" style="display: flex; flex-direction: row; overflow: hidden">
-<div style="width: 50%">
+<div v-click=1 style="width: 80%; height: 45vh; overflow: scroll; margin: auto" >
 
-```ts
-var canvas = document.getElementById('my_Canvas');
-gl = canvas.getContext('experimental-webgl');
-var vertices = 
-[-0.5, 0.5, 0.0, -0.5, -0.5, 0.0, 0.5, -0.5, 0.0, 0.5, 0.5, 0.0];
-indices = [3, 2, 1, 3, 1, 0];
-var vertex_buffer = gl.createBuffer();
-gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-gl.bindBuffer(gl.ARRAY_BUFFER, null);
-var Index_Buffer = gl.createBuffer();
-gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, Index_Buffer);
-gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, 
-new Uint16Array(indices), gl.STATIC_DRAW);
-gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
-var vertCode = 'attribute vec3 coordinates;' +
-  'void main(void) {' + ' gl_Position = vec4(coordinates, 1.0);' + '}';
-var vertShader = gl.createShader(gl.VERTEX_SHADER);
-gl.shaderSource(vertShader, vertCode);
-gl.compileShader(vertShader);
-```
-</div>
-<div>
-
-```ts
-var fragCode =
-  'void main(void) {' + ' gl_FragColor = vec4(0.0, 1.0, 0.0, 1);' + '}';
-var fragShader = gl.createShader(gl.FRAGMENT_SHADER);
-gl.shaderSource(fragShader, fragCode);
-gl.compileShader(fragShader);
-var shaderProgram = gl.createProgram();
-gl.attachShader(shaderProgram, vertShader);
-gl.attachShader(shaderProgram, fragShader);
-gl.linkProgram(shaderProgram);
-gl.useProgram(shaderProgram);
-gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer);
-gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, Index_Buffer);
-var coord = gl.getAttribLocation(shaderProgram, 'coordinates');
-gl.vertexAttribPointer(coord, 3, gl.FLOAT, false, 0, 0);
-gl.enableVertexAttribArray(coord);
-gl.clearColor(0, 0, 0, 1);
-gl.enable(gl.DEPTH_TEST);
-gl.clear(gl.COLOR_BUFFER_BIT);
-gl.viewport(0, 0, canvas.width, canvas.height);
-gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);
-```
-
-</div>
-</div>
-
-<div v-if="$slidev.nav.clicks === 2">
-
-```ts {all}
-import * as THREE from 'three';
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({canvas: document.getElementById('three'));
-const geometry = new THREE.BoxGeometry(3, 3.5);
-const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
-camera.position.z = 5;
-renderer.render(scene, camera);
-```
-
-</div>
-
-<div v-if="$slidev.nav.clicks === 3">
-
-```ts {all}
-const material = new THREE.ShaderMaterial({
-    uniforms: uniforms,
-    vertexShader: ` your shader code goes here `,
-    fragmentShader: ` your shader code goes here `
-});
+```tsx
+  <GiftedChat
+    messages={this.state.messages}
+    onSend={this.onSend}
+    loadEarlier={this.state.loadEarlier}
+    onLoadEarlier={this.onLoadEarlier}
+    isLoadingEarlier={this.state.isLoadingEarlier}
+    parsePatterns={this.parsePatterns}
+    user={user}
+    scrollToBottom
+    onLongPressAvatar={user => alert(JSON.stringify(user))}
+    onPressAvatar={() => alert('short press')}
+    onPress={() => {Alert.alert('Bubble pressed')}}
+    onQuickReply={this.onQuickReply}
+    keyboardShouldPersistTaps='never'
+    renderAccessory={Platform.OS === 'web' ? null : this.renderAccessory}
+    renderActions={this.renderCustomActions}
+    renderBubble={this.renderBubble}
+    renderSystemMessage={this.renderSystemMessage}
+    renderCustomView={this.renderCustomView}
+    renderSend={this.renderSend}
+    quickReplyStyle={{ borderRadius: 2 }}
+    quickReplyTextStyle={{fontWeight: '200'}}
+    renderQuickReplySend={this.renderQuickReplySend}
+    inverted={Platform.OS !== 'web'}
+    timeTextStyle={{ left: { color: 'red' }, right: { color: 'yellow' } }}
+    isTyping={this.state.isTyping}
+    infiniteScroll
+  />
 ```
 </div>
 
-<div v-if="$slidev.nav.clicks === 4">
-
-```ts {all}
-const material = new THREE.ShaderMaterial({
-    uniforms: uniforms,
-    vertexShader:
-       `uniform float time;
-        uniform vec2 resolution;
-        void main()	{
-            gl_Position = vec4( position, 1.0 );
-        }`,
-    fragmentShader:
-       `uniform float time;
-        uniform vec2 resolution;
-        void main()	{
-            float x = mod(time + gl_FragCoord.x, 20.) < 10. ? 1. : 0.;
-            float y = mod(time + gl_FragCoord.y, 20.) < 10. ? 1. : 0.;
-            gl_FragColor = vec4(vec3(min(x, y)), 1.);
-        }`
-});
-```
+<!-- ::right:: -->
 
 </div>
 
 ---
 
 <div v-if="$slidev.nav.currentPage===8" v-motion
-    :initial="{ x: 0, y: 10, opacity: 0}"
-    :enter="{ x:0, y: 0, opacity: 1, }" style="margin-top: -10px">
+    :initial="{ x: 0, y: -30, opacity: 1}"
+    :enter="{ x:0, y: -30, opacity: 1, }">
 
-Access low-level code
+#### Extensibility 
+
+<div v-if="$slidev.nav.clicks===0" style="display: flex; flex-direction: row">
+  <div>
+    <img src="/images/chart0.png" style="width: 100%;margin: auto" />
+    <img src="/images/chart.png" style="width: 100%;margin: auto" />
+  </div>
+  <div>
+    <img src="/images/chart2.png" style="width: 80%;margin: auto" />
+  </div>
+</div>
+
+
+<div v-click=1>
+
+```tsx
+<LineChart
+  width={500}
+  height={300}
+  data={data}
+  margin={{top: 5}}
+>
+  <CartesianGrid strokeDasharray="3 3" />
+  <XAxis dataKey="name" />
+  <YAxis />
+  <Tooltip />
+  <Legend />
+  <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
+  <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+</LineChart>
+```
+</div>
+
+Composition is great
+
+</div>
+
+---
+
+# Access low-level code
+
+<div style="display: flex; flex-direction: row;" >
+  <img src="/images/skia1.png" style="height: 30vh"/>
+  <img src="/images/skia2.png" style="height: 30vh"/>
+  <v-click>
+  <img src="/images/skia3.png" style="height: 30vh"/>
+  </v-click>
+</div>
+---
+
+<div v-if="$slidev.nav.currentPage===10" v-motion
+    :initial="{ x: 0, y: -30, opacity: 0}"
+    :enter="{ x:0, y: -10, opacity: 1, }" style="margin-top: -10px">
+
+#### Access low-level code
+
+
+```jsx
+import {Skia, BlendMode, SkiaView, useDrawCallback} from "@shopify/react-native-skia";
+const paint = Skia.Paint();
+paint.setAntiAlias(true);
+paint.setBlendMode(BlendMode.Multiply);
+ 
+export const HelloWorld = () => {
+  const width = 256;
+  const height = 256;
+  const r = 92;
+  const onDraw = useDrawCallback((canvas) => {
+    const cyan = paint.copy();
+    cyan.setColor(Skia.Color("cyan"));
+    canvas.drawCircle(r, r, r, cyan);
+    const magenta = paint.copy();
+    magenta.setColor(Skia.Color("magenta"));
+    canvas.drawCircle(width - r, r, r, magenta);
+    const yellow = paint.copy();
+    yellow.setColor(Skia.Color("yellow"));
+    canvas.drawCircle(width/2, height - r, r, yellow);
+  });
+  return (
+    <SkiaView style={{ flex: 1 }} onDraw={onDraw} />
+  );
+};
+```
+</div>
+
+---
+
+#### Access low-level code
+
+```jsx
+import {Canvas, Circle, Group} from "@shopify/react-native-skia";
+ 
+export const HelloWorld = () => {
+  const size = 256;
+  const r = size * 0.33;
+  return (
+    <Canvas style={{ flex: 1 }}>
+      <Group blendMode="multiply">
+        <Circle cx={r} cy={r} r={r} color="cyan" />
+        <Circle cx={size - r} cy={r} r={r} color="magenta" />
+        <Circle
+          cx={size/2}
+          cy={size - r}
+          r={r}
+          color="yellow"
+        />
+      </Group>
+    </Canvas>
+  );
+};
+```
+Framework specific design
+---
+
+#### Access low-level code
+
+```jsx
+import {Canvas, Circle, Group, Drawing, Skia} from "@shopify/react-native-skia";
+ 
+export const HelloWorld = () => {
+  const size = 256;
+  const r = size * 0.33;
+  return (
+    <Canvas style={{ flex: 1 }}>
+      <Group blendMode="multiply">
+        <Drawing
+          drawing={({ canvas, paint }) => {
+            paint.setColor(Skia.Color("cyan"));
+            canvas.drawCircle(r, r, r, paint);
+            paint.setColor(Skia.Color("magenta"));
+            canvas.drawCircle(size - r, r, r, paint);
+            paint.setColor(Skia.Color("yellow"));
+            canvas.drawCircle(size / 2, size - r, r, paint);
+          }}
+        />
+      </Group>
+    </Canvas>
+  );
+};
+```
+
+---
+
+## Escape hatch
+
+#### An intentional leak in the abstraction layer, let's you reach out to a lower layer
+
+<v-click>
+
+```jsx
+<div dangerouslySetInnerHTML={{__html: '<p>Hello World!</p>'}}>
+```
+
+</v-click>
+
+<!-- removing guard rails and letting the user do things that would otherwise be impossible, this might lead to  -->
+
+---
+
+
+<div v-if="$slidev.nav.currentPage===14" v-motion
+    :initial="{ x: 0, y: 10, opacity: 0}"
+    :enter="{ x:0, y: 0, opacity: 1, }" style="margin-top: 0px">
+
+# Putting it together
 
 ```tsx
   <AgoraUIKit rtcProps={{appId: '<Agora App ID>', channel: 'test'}} />
 ```
+<br />
+<img src="/images/sc.png" style="width: 45%; margin: auto" />
 
-<img src="images/sc.png" style="width: 45%; margin: auto" />
+</div>
 
-<div v-click=1>
+---
+clicks: 3
+---
+
+# Putting it together
+
+<div>
+<div v-if="$slidev.nav.clicks>=0">
+
+```tsx
+  <AgoraUIKit rtcProps={{appId: '<Agora App ID>', channel: 'test', layout: layout.GRID}} />
+```
+
+</div>
+
+<div v-if="$slidev.nav.clicks===1">
+
+```tsx
+<PropsProvider value={props}>
+  <RtcConfigure>
+    <LocalUserContext>
+      <GridVideo /> 
+      <LocalControls />
+    </LocalUserContext>
+  </RtcConfigure>
+</PropsProvider>
+```
+</div>
+
+<div v-if="$slidev.nav.clicks>1">
+
+```tsx
+<PropsProvider value={props}>
+  <RtcConfigure>
+    <LocalUserContext>
+      <GridVideo /> 
+      <LocalAudioMute />
+      <LocalVideoMute />
+      <SwitchCamera />
+    </LocalUserContext>
+  </RtcConfigure>
+</PropsProvider>
+```
+</div>
+
+<div v-if="$slidev.nav.clicks>2">
 
 ```ts
   const { client } = useContext(RtcContext)
   await client.enableVirtualBackground(config)
 ```
 </div>
+
 </div>
 
 <!-- if the user needs virtual background that the uikit doesn't support we throw out the entire project unless.. -->
 
 ---
-
-<h2 style="display:inline"> Smart defaults </h2>
-<h4 v-click="1" style="display:inline">that are built to be overridden</h4>
-
-<br>
-<br>
-
-<video loop="true" autoplay="autoplay" muted style="width: 100%; margin:auto">
-  <source src="images/screen.webm" type="video/webm">
-</video>
-
-<!-- we're trying to do the users work for them, but you don't want to make decision on the user's behalf, so you add smart defaults that work out of the box but can be overridden simply-->
-
----
 clicks: 2
 ---
 
-## Granularity
+# Granularity
 
 <div v-if="$slidev.nav.clicks === 0">
 
 ```ts
-> step a 
-> step b
-> step c
-> step d
-> step e
-> step f
+openCarDoor()
+getInCar()
+startEngine()
+driveToReactIndia()
+meetCoolDevs()
+openCarDoor()
+getInCar()
+startEngine()
+driveHome()
 ```
 
 vs.
 
 ```ts
-> step abcdef
+doReactIndiaStuff()
 ```
 </div>
 <div v-click="1">
 
 ```ts
-> step abcd
-> step ef
+travelTo(ReactIndia)
+meetCoolDevs()
+travelTo(Home)
 ```
 </div>
 
@@ -420,14 +549,16 @@ vs.
 
 ## Give user access to events
 
-What if - I want to do something between step **E** and **F**?
+What if I want to do checkMirror between `getInCar()` & `startEngine()`?
+
 
 <div v-click=1 >
 
 ```ts
-> step e
-event.emit("some-event-between-e-and-f") // can be blocking / non-blocking
-> step f
+// in your lib
+getInCar()
+event.emit("inside-the-car") // can be blocking / non-blocking
+startEngine()
 ```
 </div>
 <div v-click=2 >
@@ -435,11 +566,12 @@ event.emit("some-event-between-e-and-f") // can be blocking / non-blocking
     :initial="{ x: 0, y: 40, opacity: 0}"
     :enter="{ x:0, y: 20, opacity: 1, transition: { delay: 0 } }">
 
-```ts {1|2|3|4}
-> step abcd
-doSomethingAfterEventD()
-instance.on("some-event-between-e-and-f", doSomethingAfterEventE())
-> step ef
+```ts {1-2|3|4|5}
+// in the app
+instance.on("inside-the-car", checkMirror())
+travelTo(ReactIndia)
+meetCoolDevs()
+travelTo(Home)
 ```
 
   </div>
@@ -448,102 +580,22 @@ instance.on("some-event-between-e-and-f", doSomethingAfterEventE())
 ---
 
 ## Give user access to events
-#### Giving data back to the user
 
-<div v-click=1>
-
-#### Side Effects
-</div>
-<div v-click=2>
-
-```js
-const ele = document.querySelector('agora-react-web-uikit');
-
-ele.addEventListener('AgoraUIKitEndcall', (e) => {
-  ele.remove()
- })
+```tsx
+<AgoraUIKit
+  rtcProps={{
+    appId: appId,
+    channel: props.channel,
+  }}
+  callbacks={{
+    EndCall: () => { router.push('/') },
+    userJoined: (user) => {toast.show(user)},
+  }}
+/>
 ```
-</div>
 
 ---
-
-## Framework specific design
-
-SwiftUI
-```swift
-image?.padding(100).resizable().scaledToFit()
-```
-
-React Library
-```tsx{0|1|3}
-<image padding="100" resizable scaled></image>
-// vs.
-<image style={{padding: "100px"}} resizable scaled></image>
-```
-
-<!-- user's already know the framework don't make them learn your syntax -->
-
----
-clicks: 6
----
-
-## Escape hatches
-
-#### An “escape hatch” is an intentional leak in the abstraction layer. It allows users to “escape the abstraction” and reach out to a lower layer  - cdk8s docs
-
-<img src="images/vb.png" v-if="$slidev.nav.clicks===1" style="width: 60%; margin:auto">
-
-<div v-if="$slidev.nav.clicks>1 && $slidev.nav.clicks < 6">
-
-```vb {0|1|2|3|4}
-Msgbox "This is myName"
-Msgbox "This is "myName""  ' This gives an error
-Msgbox "This is ""myName"""
-"This is \"myName\""
-```
-</div>
-<div v-click="6">
-
-```jsx
-<div dangerouslySetInnerHTML={{__html: '<p>Hello World!</p>'}}></div>
-```
-</div>
-
-<!-- removing guard rails and letting the user do things that would otherwise be impossible, this might lead to  -->
-
----
-clicks: 5
----
-## Taxonomy
-
-<tweet v-if="$slidev.nav.clicks===0" id="1522312354653945857" />
-
-<div v-click=1>
-
-`dangerouslySetInnerHTML`
-</div>
-
-<div v-click=2>
-
-```swift {0|1-2|4-5|7-8|10-11|13-14}
-x.append(y) //Nonmutating
-let	z = x.appending(y) //Mutating
-
-y.formUnion(z) //Mutating
-x = y.union(z) //Nonmutating
-
-array.remove(0) ⛔️
-array.removeAt(0) ✅
-
-view.removeElement(cancelButton) ⛔️
-allViews.remove(cancelButton) ✅
-```
-</div>
-<div v-click=5>
-
-#### opinion: if in doubt, be as explicit as you can
-</div>
-
+clicks: 3
 ---
 
 ## Docs, docs, docs
@@ -557,26 +609,26 @@ allViews.remove(cancelButton) ✅
 #### We has met the enemy, and it is us. — Walt Kelly
 
 
-<img src=images/manual.png style="width: 70%;margin: auto">
+<img src="/images/manual.png" style="width: 70%;margin: auto">
 </v-clicks>
 
 
 ---
-
-## Handle errors
+clicks: 6
+---
+## Errors
 
 <tweet v-if="$slidev.nav.clicks===0" id="1535987671868137472" scale="0.7" />
-<v-clicks>
+<div v-click=1>
 
 - #### > Descriptive error messages, error codes, error description ELI5
-- #### > Handle user errors
-- #### > Use patterns to show functions that can error
 
-</v-clicks>
+- #### > Use good patterns to show functions that can error
+</div>
 
-<div v-click="4" v-if="$slidev.nav.clicks>3 && $slidev.nav.clicks<6" >
+<div v-click="2" v-if="$slidev.nav.clicks>2 && $slidev.nav.clicks<5" >
 
-```ts {1-5|7}
+```ts{1-5|7}
 try {
   data = methodThatCanError(badConfig)
 } catch (e) {
@@ -586,7 +638,7 @@ try {
 let data = methodThatCanError(badConfig)
 ```
 </div>
-<div v-click="6">
+<div v-click="5">
 
 ```ts
 let {data, error} = methodThatCanError(badConfig)
@@ -594,77 +646,20 @@ if (!error) print(data)
 ```
 </div>
 
----
-clicks: 7
----
+<div v-click="6">
 
-## Use syntax to avoid user error
-
-<div v-click-hide=3>
-<div v-click=0>
-
-#### enums
-
-```cpp {1,2|4|4-8}
-string today = "wednesday";
-strcmp(today, "Wednesday"); //false
-...
-enum week { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday };
-int main()
-{
-  week today = Wednesday; //prints 4
-}
-```
-</div>
-</div>
-
-
-<div v-click=3 style="margin: -240px 0">
-
-#### getter
-
-```ts {1-3|5-6|7-13|8,15-16}
-const object = {}
-object.time = new Date().getTime()
-return object; 
-
-let myTime = object.time
-object.time = 0 //overwritten :(
-
-...
-
-const object = {}
-const time = new Date().getTime()
-object.getTime = () => time
-return object;
-
-let myTime = object.getTime()
-object.getTime = 0 // doesn't make sense anymore + type error
-```
-</div>
-
----
-clicks: 3
----
-# Bonus
-
-<h4 style="display:inline"> Pre built UI <span style="display:inline"> - respect platform standards</span></h4>
-<div v-if="$slidev.nav.clicks===1">
-<br>
-<img  src="images/ios.png" style="width: 50%;margin:auto">
-<h4 style="text-align: center">  Design for all platforms: web, desktop & mobile </h4>
-</div>
-<div v-click=2>
-
-#### Keep your dependencies lean
-</div>
-<div v-click=3>
-<h4 style="display:inline"> i18n? use icons: <span style="dispaly: inline">👋 username </span></h4>
+- #### > use enums
 </div>
 
 ---
 
 <tweet id=1534914416050855936 /> 
+
+---
+
+## We're hosting [RTE 2022](https://rte2022.agora.io/?promo=Arora)!
+
+<img src="/images/rte.png" style="width: 80%">
 
 ---
 
@@ -676,7 +671,7 @@ clicks: 3
 # Thanks for your time!
 <br>
 
-#### Make cool things to inspire cooler things
+## We have a booth, come say hi : )
 <!-- #### Learn stupid things to build stupidder things -->
 <br>
 
@@ -686,27 +681,10 @@ clicks: 3
 
 ---
 
-# Refereces
+# References
 
 - [Agora Web UIKit](https://github.com/AgoraIO-Community/Web-React-UIKit/)
-- [Gartner Report](https://cyclr.com/blog/low-code-is-revolutionising-the-software-industry#:~:text=With%20Gartner%20suggesting%20that%20%E2%80%9Cby,such%20as%20citizen%20developers%2Fintegrators.)
+- [Gartner Report](https://cyclr.com/blog/low-code-is-revolutionising-the-software-industry)
 - [Swyx Twitter](https://twitter.com/swyx)
-- [cdk8s](https://cdk8s.io/)
-- [Swift Docs](https://swift.org/documentation/api-design-guidelines/)
 - [xkcd comic](https://xkcd.com/)
 - [Giphy gif](https://giphy.com/)
-
-<!-- 
-## Framework specific design
-
-```go
-package main
-import ("fmt")
-func main() {
-  fmt.Print("hi mom")
-}
-```
-
-```ts
-console.log('hi mom')
-```-->
