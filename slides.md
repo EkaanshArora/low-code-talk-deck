@@ -7,11 +7,13 @@ drawings:
   persist: false
 ---
 
-# Low-Code for React Developers
+# Low-Code for Developers
 
 <br>
+<v-click>
 
-<!-- #### Building a low-code product that devs don't throw out in a week -->
+#### Building a low-code product that devs don't throw out in a week
+</v-click>
 <br><br><br><br><br>
 <a href="https://twitter.com/ekaansh" target=_blank>@ekaansh</a>
 
@@ -42,9 +44,12 @@ layout: two-cols
 
 - Maker of 3D art and taylor swift metal covers
 
+<span style="margin:10px"></span>
+<span>
 <logos-twitter /> <a href="https://twitter.com/ekaansh" target=_blank>@ekaansh</a>
 <span style="margin:10px"></span>
 <fa-github /> <a href="https://github.com/ekaansharora" target=_blank>@ekaansharora</a>
+</span>
 </div>
 
 ---
@@ -52,22 +57,22 @@ clicks: 11
 ---
 
 <div v-if="$slidev.nav.currentPage===3" v-motion
-    :initial="{ x: 0, y: -20, opacity: 0}"
-    :enter="{ x:0, y: -50, opacity: 1, }">
+    :initial="{ x: 0, y: -30, opacity: 0}"
+    :enter="{ x:0, y: -60, opacity: 1, }">
 
 # What's low code
 </div>
 
 <div v-click=1 >
   <div v-if="$slidev.nav.clicks>0" v-motion
-    :initial="{ x: 0, y: -20, opacity: 0}"
-    :enter="{ x:0, y: -50, opacity: 1}">
+    :initial="{ x: 0, y: -30, opacity: 0}"
+    :enter="{ x:0, y: -60, opacity: 1}">
     <h4 v-click="1"> Abstractions to simplify developer experience that let you focus on things that matter<h4 v-click="2" style="display:inline">++</h4></h4>
 </div>
 </div>
 <div v-click=2 style="display:none"></div>
 
-<div v-if="$slidev.nav.clicks>2 && $slidev.nav.clicks<8" style="position:relative; height: 32vh;display: flex;justify-content: center;">
+<div v-if="$slidev.nav.clicks>2 && $slidev.nav.clicks<8" style="position:relative; height: 35vh;display: flex;justify-content: center;">
 <div style="position:absolute; bottom: -30px;">
 
 <div v-if="$slidev.nav.clicks===3">
@@ -125,7 +130,7 @@ CPU --> Assembly --> id1(High Level Languages) --> Libraries -.-> id2(Low Code) 
 <div v-if="$slidev.nav.clicks===9">
 
 ```tsx
-<AgoraUIKit config={config} style={style} callbacks={callbacks} />
+<Videocall config={config} style={style} callbacks={callbacks} />
 ```
 </div>
 
@@ -179,7 +184,7 @@ WordPress is used by **43.2%** of all websites on the internet in **2022**, an i
 </div>
 
 ---
-clicks: 1
+clicks: 2
 ---
 
 <img src="/images/google.png" style="width: 60%; margin: auto" />
@@ -189,22 +194,22 @@ clicks: 1
     :enter="{ x:0, y: -130, opacity: 1, }">
 
 ```js
-lowCodeTool.doSomeMagic()
+
+
 ```
 
 </div>
-
 <div v-click=1 style="width: 60%; margin: auto" v-motion
     :initial="{ x: 0, y: -130, opacity: 0}"
     :enter="{ x:0, y: 0, opacity: 1, }">
 
 ```js
 lowCodeTool.doSomeMagic()
-// do some other magic???
 ```
 
 </div>
 
+<div v-click=2 style="width: 60%; margin: auto">do some other magic???</div>
 
 ---
 
@@ -332,12 +337,7 @@ Composition is great
 #### Access low-level code
 
 
-```jsx
-import {Skia, BlendMode, SkiaView, useDrawCallback} from "@shopify/react-native-skia";
-const paint = Skia.Paint();
-paint.setAntiAlias(true);
-paint.setBlendMode(BlendMode.Multiply);
- 
+```jsx {1-20|5-15}
 export const HelloWorld = () => {
   const width = 256;
   const height = 256;
@@ -364,9 +364,7 @@ export const HelloWorld = () => {
 
 #### Access low-level code
 
-```jsx
-import {Canvas, Circle, Group} from "@shopify/react-native-skia";
- 
+```jsx {1-20|5-16}
 export const HelloWorld = () => {
   const size = 256;
   const r = size * 0.33;
@@ -386,14 +384,12 @@ export const HelloWorld = () => {
   );
 };
 ```
-Framework specific design
+
 ---
 
 #### Access low-level code
 
-```jsx
-import {Canvas, Circle, Group, Drawing, Skia} from "@shopify/react-native-skia";
- 
+```jsx {7-14}
 export const HelloWorld = () => {
   const size = 256;
   const r = size * 0.33;
@@ -424,6 +420,19 @@ export const HelloWorld = () => {
 
 <v-click>
 
+```c {1|3-6}
+printf("This is some C code");
+/* Add 10 and 20 and store result into register %eax */
+    __asm__ ( "movl $10, %eax;"
+                "movl $20, %ebx;"
+                "addl %ebx, %eax;"
+    );
+```
+
+</v-click>
+
+<v-click>
+
 ```jsx
 <div dangerouslySetInnerHTML={{__html: '<p>Hello World!</p>'}}>
 ```
@@ -433,78 +442,65 @@ export const HelloWorld = () => {
 <!-- removing guard rails and letting the user do things that would otherwise be impossible, this might lead to  -->
 
 ---
-
-
+clicks: 6
+---
 <div v-if="$slidev.nav.currentPage===14" v-motion
     :initial="{ x: 0, y: 10, opacity: 0}"
-    :enter="{ x:0, y: 0, opacity: 1, }" style="margin-top: 0px">
+    :enter="{ x:0, y: 0, opacity: 1, }">
 
-# Putting it together
+# Access low-level code
+</div>
+<br>
+<br>
 
-```tsx
-  <AgoraUIKit rtcProps={{appId: '<Agora App ID>', channel: 'test'}} />
+<div v-if="$slidev.nav.clicks > 0 && $slidev.nav.clicks < 4">
+
+```ts {1-2|6-7|all}
+const lowCodeInstance = new LowCode(config);
+lowCodeInstance.doSomethingEasy();
+
+...
+
+const sdkInstance = lowCodeInstance.getSDK();
+sdkInstance.doSomethingLowCodeDoesNot();
 ```
-<br />
-<img src="/images/sc.png" style="width: 45%; margin: auto" />
 
+</div>
+
+<div v-click=4 >
+<div v-if="$slidev.nav.clicks > 3" v-motion
+    :initial="{ x: 0, y: -10, opacity: 0}"
+    :enter="{ x:0, y:  0, opacity: 1, }">
+
+```swift {0|0|0|1-4|6-7|all}
+let sepiaFilter = CIFilter(name:"CISepiaTone")
+sepiaFilter?.setValue(input, forKey: kCIInputImageKey)
+sepiaFilter?.setValue(intensity, forKey: kCIInputIntensityKey)
+return sepiaFilter?.outputImage
+...
+let rawdata = UnsafeMutablePointer<RGBAPixel>.allocate(capacity: width * height)
+pixels = UnsafeMutableBufferPointer<RGBAPixel>(start: rawdata, count: width * height)
+```
+</div>
 </div>
 
 ---
-clicks: 3
----
 
-# Putting it together
+## Framework specific design
 
-<div>
-<div v-if="$slidev.nav.clicks>=0">
-
-```tsx
-  <AgoraUIKit rtcProps={{appId: '<Agora App ID>', channel: 'test', layout: layout.GRID}} />
+SwiftUI
+```swift
+image?.padding(100).resizable().scaledToFit()
 ```
 
-</div>
-
-<div v-if="$slidev.nav.clicks===1">
-
-```tsx
-<PropsProvider value={props}>
-  <RtcConfigure>
-    <LocalUserContext>
-      <GridVideo /> 
-      <LocalControls />
-    </LocalUserContext>
-  </RtcConfigure>
-</PropsProvider>
+React Library
+```tsx{0|1|3}
+<image padding="100" resizable scaled></image>
+// vs.
+<image style={{padding: "100px"}} resizable scaled></image>
 ```
-</div>
 
-<div v-if="$slidev.nav.clicks>1">
-
-```tsx
-<PropsProvider value={props}>
-  <RtcConfigure>
-    <LocalUserContext>
-      <GridVideo /> 
-      <LocalAudioMute />
-      <LocalVideoMute />
-      <SwitchCamera />
-    </LocalUserContext>
-  </RtcConfigure>
-</PropsProvider>
-```
-</div>
-
-<div v-if="$slidev.nav.clicks>2">
-
-```ts
-  const { client } = useContext(RtcContext)
-  await client.enableVirtualBackground(config)
-```
-</div>
-
-</div>
-
-<!-- if the user needs virtual background that the uikit doesn't support we throw out the entire project unless.. -->
+<!-- user's already know the framework don't make them learn your syntax -->
 
 ---
 clicks: 2
@@ -518,7 +514,7 @@ clicks: 2
 openCarDoor()
 getInCar()
 startEngine()
-driveToReactIndia()
+driveToMeetup()
 meetCoolDevs()
 openCarDoor()
 getInCar()
@@ -529,13 +525,13 @@ driveHome()
 vs.
 
 ```ts
-doReactIndiaStuff()
+doMeetupStuff()
 ```
 </div>
 <div v-click="1">
 
 ```ts
-travelTo(ReactIndia)
+travelTo(Meetup)
 meetCoolDevs()
 travelTo(Home)
 ```
@@ -569,13 +565,86 @@ startEngine()
 ```ts {1-2|3|4|5}
 // in the app
 instance.on("inside-the-car", checkMirror())
-travelTo(ReactIndia)
+travelTo(Meetup)
 meetCoolDevs()
 travelTo(Home)
 ```
 
   </div>
 </div>
+
+---
+
+<div v-if="$slidev.nav.currentPage===18" v-motion
+    :initial="{ x: 0, y: 10, opacity: 0}"
+    :enter="{ x:0, y: 0, opacity: 1, }" style="margin-top: 0px">
+
+# Putting it together
+
+```tsx
+  <AgoraUIKit rtcProps={{appId: '<Agora App ID>', channel: 'test'}} />
+```
+<br />
+<img src="/images/sc.png" style="width: 45%; margin: auto" />
+
+</div>
+
+---
+clicks: 4
+---
+
+# Putting it together
+
+<div>
+<div v-if="$slidev.nav.clicks>=0">
+
+```tsx
+  <AgoraUIKit rtcProps={{appId: '<Agora App ID>', channel: 'test', layout: layout.GRID}} />
+```
+
+</div>
+
+<div v-if="$slidev.nav.clicks>0  && $slidev.nav.clicks<3">
+
+```tsx {1-10|1-10|5}
+<PropsProvider value={props}>
+  <RtcConfigure>
+    <LocalUserContext>
+      <GridVideo /> 
+      <LocalControls />
+    </LocalUserContext>
+  </RtcConfigure>
+</PropsProvider>
+```
+</div>
+
+<div v-if="$slidev.nav.clicks>2  && $slidev.nav.clicks<4">
+
+```tsx {5-7}
+<PropsProvider value={props}>
+  <RtcConfigure>
+    <LocalUserContext>
+      <GridVideo /> 
+      <LocalAudioMute />
+      <LocalVideoMute />
+      <SwitchCamera />
+    </LocalUserContext>
+  </RtcConfigure>
+</PropsProvider>
+```
+</div>
+
+<div v-if="$slidev.nav.clicks>3">
+
+```ts
+  const { client } = useContext(RtcContext)
+  await client.enableVirtualBackground(config)
+```
+</div>
+
+</div>
+
+<!-- if the user needs virtual background that the uikit doesn't support we throw out the entire project unless.. -->
 
 ---
 
@@ -593,6 +662,41 @@ travelTo(Home)
   }}
 />
 ```
+
+---
+clicks: 5
+---
+
+## Taxonomy
+
+<tweet v-if="$slidev.nav.clicks===0" id="1522312354653945857" />
+
+<div v-click=1>
+
+`dangerouslySetInnerHTML`
+
+</div>
+
+<div v-click=2>
+
+```swift {0|1-2|4-5|7-8|10-11|13-14}
+x.append(y) //Nonmutating
+let	z = x.appending(y) //Mutating
+
+y.formUnion(z) //Mutating
+x = y.union(z) //Nonmutating
+
+array.remove(0) ⛔️
+array.removeAt(0) ✅
+
+view.removeElement(cancelButton) ⛔️
+allViews.remove(cancelButton) ✅
+```
+</div>
+<div v-click=5>
+
+#### opinion: if in doubt, be as explicit as you can
+</div>
 
 ---
 clicks: 3
@@ -614,7 +718,7 @@ clicks: 3
 
 
 ---
-clicks: 6
+clicks: 4
 ---
 ## Errors
 
@@ -626,7 +730,7 @@ clicks: 6
 - #### > Use good patterns to show functions that can error
 </div>
 
-<div v-click="2" v-if="$slidev.nav.clicks>2 && $slidev.nav.clicks<5" >
+<div v-if="$slidev.nav.clicks>1 && $slidev.nav.clicks<4" >
 
 ```ts{1-5|7}
 try {
@@ -638,7 +742,7 @@ try {
 let data = methodThatCanError(badConfig)
 ```
 </div>
-<div v-click="5">
+<div v-click="4">
 
 ```ts
 let {data, error} = methodThatCanError(badConfig)
@@ -646,20 +750,58 @@ if (!error) print(data)
 ```
 </div>
 
-<div v-click="6">
+---
+clicks: 7
+---
 
-- #### > use enums
+## Use syntax to avoid user error
+
+<div v-click-hide=3>
+<div v-click=0>
+
+#### enums
+
+```cpp {1,2|4|4-8}
+string today = "wednesday";
+strcmp(today, "Wednesday"); //false
+...
+enum week { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday };
+int main()
+{
+  week today = Wednesday; //prints 4
+}
+```
+</div>
+</div>
+
+
+<div v-click=3 style="margin: -240px 0">
+
+#### getter
+
+```ts {1-3|5-6|7-13|8,15-16}
+const object = {}
+object.time = new Date().getTime()
+return object; 
+
+let myTime = object.time
+object.time = 0 //overwritten :(
+
+...
+
+const object = {}
+const time = new Date().getTime()
+object.getTime = () => time
+return object;
+
+let myTime = object.getTime()
+object.getTime = 0 // doesn't make sense anymore + type error
+```
 </div>
 
 ---
 
 <tweet id=1534914416050855936 /> 
-
----
-
-## We're hosting [RTE 2022](https://rte2022.agora.io/?promo=Arora)!
-
-<img src="/images/rte.png" style="width: 80%">
 
 ---
 
@@ -670,14 +812,16 @@ if (!error) print(data)
 
 # Thanks for your time!
 <br>
-
-## We have a booth, come say hi : )
-<!-- #### Learn stupid things to build stupidder things -->
 <br>
 
+#### Build cool things to inspire cooler things
+<br>
+<span>
 <logos-twitter /> <a href="https://twitter.com/ekaansh" target=_blank>@ekaansh</a>
+</span>
 
 </div>
+
 
 ---
 
